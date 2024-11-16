@@ -1,0 +1,77 @@
+
+<% title = 'medicine add page' %>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="submit"]:active {
+            background-color: #004080;
+        }
+    </style>
+
+<div style="text-align: center;" >
+    <h1 class="text-center"><%=title%></h1>
+    <form action="/addeditem" method="post" style="background-color: black;" >
+        <label style="text-align: center; text-decoration: solid; color: #f4f4f4;  ">Add item</label>
+        <label style="text-decoration: solid; color: #f4f4f4; " >medicine</label>
+        <input required type="text" id="medicine" name="medicine">
+        <label style="text-decoration: solid; color: #f4f4f4; " >Availablestock</label>
+        <input required type="text" id="Availablestock" name="Availablestock">
+        <input  style="text-decoration: solid; color: #f4f4f4; "  type="submit" value="Submit">
+    </form>
+</div>

@@ -1,0 +1,129 @@
+<% title = 'Medic Table' %>
+
+<style type="text/css">
+  body {
+    background-color: #f0f2f5;
+    font-family: 'Arial', sans-serif;
+  }
+
+  h1 {
+    color: #343a40;
+    font-size: 2.5rem;
+  }
+
+  .btn-info {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-info:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+
+  .modal-content {
+    border-radius: 0.5rem;
+  }
+
+  .modal-header {
+    background-color: #343a40;
+    color: white;
+  }
+
+  .modal-footer {
+    border-top: 1px solid #dee2e6;
+  }
+
+  .table {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .table-dark {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+
+  .table-dark th,
+  .table-dark td {
+    padding: 1rem;
+  }
+
+  .table-dark th {
+    background-color: #212529;
+    text-align: center;
+  }
+
+  .table-dark td {
+    text-align: center;
+  }
+</style>
+
+<h1 class="text-center"><%=title%></h1>
+<div class="container mt-5">
+  <div class="text-center mt-5">
+    <div class="modal" id="myModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+  <input type="text" id="medicine" oninput=searchMedicine(this.value) placeholder="Search medicine">
+<div id="search-results"></div>
+</div>
+
+  <a style="padding: 30px;" href="/addmadic"> Add medicine <i class='bx bx-add-to-queue'></i></i></a>
+  <a style="padding: 30px;" href="/logout"> logout <i class='bx bx-exit'></i></i></a>
+  <table class="table table-dark mt-5">
+    <thead>
+      <tr>
+        <th scope="col">medicine</th>
+        <th scope="col">available stock</th>
+        <th scope="col">time</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% data.forEach(item=>{ %>
+             <tr>
+                 <td><%= item.Medicine %></td>
+                 <td><%= item.Availablestock %></td>
+                 <td><%= item.addedAt.toLocaleString() %></td>
+                 <td><a href="/update/<%= item._id %>"><i class='bx bx-comment-edit'></i> </a></td>
+                 <td><a href="/delete/<%= item._id %>"> <i class='bx bxs-trash'></i> </a></td>
+             </tr>
+      <%   }) %>
+     </tbody>
+  </table>
+</div>
+
+
+  <nav aria-label="Page navigation example" style="margin:auto;">
+
+
+    <% if (pagination.hasPrevPage) { %>
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page=<%= pagination.prevPage %>">&laquo; previous</a>
+    <% } %>
+ 
+    <% for (let page_number = 1; page_number <= pagination.totalPages; page_number++) { %>
+      <% if (pagination.page === page_number) { %>
+        <span ><%= page_number %></span>
+      <% } else { %>
+        <a href="?page=<%= page_number %>"><%= page_number %></a>
+      <% } %>
+    <% } %>
+ 
+    <% if (pagination.hasNextPage) { %>
+      <a href="?page=<%= pagination.nextPage %>" >next &raquo;</a>
+      <a href="?page=<%= pagination.totalPages %>">last &raquo;</a>
+    <% } %>
+ 
+  </nav>
